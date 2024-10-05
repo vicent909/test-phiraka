@@ -17,5 +17,7 @@ cd no-2
 
 npm i 
 
+node db/migration
+
 node app.js
 ```
