@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fibonacci</title>
+    <style>
+      table,
+      td,
+      th {
+        border: 1px solid #000;
+        text-align: center;
+      }
+      th,
+      td {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="javascript:alert(row.value, col.value)">
+      <label for="row">Row</label>
+      <input type="number" id="row" name="row" /><br /><br />
+      <label for="col">Column</label>
+      <input type="number" id="col" name="col" /><br /><br />
+      <button type="submit">submit</button>
+    </form><br>
+    <div id="table-wrapper"></div>
+    <script>
+      function alert(row, col) {
+        const table = document.createElement("table");
+
+        const tbody = table.createTBody();
+
+        let arr = [];
+        for (let i = 0; i < col * row; i++) {
+          if (i === 0 || i === 1) {
+            arr.push(i);
+          } else {
+            arr.push(arr[i - 1] + arr[i - 2]);
+          }
+        }
+
+        for (let i = 0; i < row; i++) {
+          const x = tbody.insertRow();
+          for (let j = 0; j < col; j++) {
+            const cell = x.insertCell();
+            cell.appendChild(document.createTextNode(arr[j]));
+          }
+          arr.splice(0, col);
+        }
+
+        document.getElementById("table-wrapper").appendChild(table);
+      }
+    </script>
+  </body>
+</html>
